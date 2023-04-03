@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Employee extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     protected $dates = ['hired_date'];
     /**
@@ -27,6 +29,14 @@ class Employee extends Model
         'category',
         'hired_date'
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name','email','job_title', 'salary','manager.name'])
+            ->setDescriptionForEvent(fn(string $eventName) => "This employee has been {$eventName}");
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * The attributes that should be cast.
