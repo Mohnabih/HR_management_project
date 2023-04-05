@@ -10,6 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $dates = ['hired_date'];
+    protected $with=['manager','founder'];
     /**
      * The attributes that are mass assignable.
      *
@@ -17,14 +18,12 @@ class Employee extends Model
      */
     protected $fillable = [
         'manager_id',
-        'founder_id',
         'name',
         'age',
         'gender',
         'email',
         'salary',
         'job_title',
-        'category',
         'hired_date'
     ];
 
@@ -35,14 +34,12 @@ class Employee extends Model
      */
     protected $casts = [
         'manager_id' => 'integer',
-        'founder_id' => 'integer',
         'name' => 'string',
         'age' => 'integer',
         'gender' => 'boolean',
         'email' => 'string',
         'salary' => 'integer',
         'job_title' => 'string',
-        'category' => 'integer',
     ];
 
     /**
@@ -50,7 +47,7 @@ class Employee extends Model
      */
     public function manager()
     {
-        return $this->belongsTo(Employee::class, 'manager_id');
+        return $this->belongsTo(Employee::class, 'manager_id')->select(['id','name','manager_id']);
     }
 
     /**
@@ -58,6 +55,8 @@ class Employee extends Model
      */
     public function founder()
     {
-        return;
+        return $this->belongsToMany(Founder::class, 'employee_founder', 'employee_id', 'founder_id')
+            ->withTimestamps()
+            ->as('founder');
     }
 }

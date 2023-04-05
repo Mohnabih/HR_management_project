@@ -69,7 +69,7 @@ class EmployeeController extends AppBaseController
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::select(['id','name','manager_id'])->find($id);
         if ($employee)
             return $this->sendResponse(
                 [

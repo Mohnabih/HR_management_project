@@ -25,9 +25,7 @@ class StoreEmployeeRequest extends BaseRequest
     public function rules()
     {
         return [
-            'category'=>'required|integer|in:0,1',
             'manager_id'=>'integer|exists:employees,id',
-            'founder_id'=>'integer|exists:founders,id',
             'name'=>'required|string|max:150',
             'age'=>'required|numeric|min:18',
             'gender'=>'required|integer|in:0,1',
