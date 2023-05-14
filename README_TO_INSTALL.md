@@ -1,23 +1,33 @@
 ## Run Laravel project
 
-- Clone the project
+-   Clone the project
 
-Go to the folder application using cd command on your cmd or terminal
+*   Go to the folder application using cd command on your cmd or terminal
 
-- Run -> composer install
+-   Run -> composer install
 
-- Run -> cp .env.example .env
+-   Run -> cp .env.example .env
 
-- Run -> php artisan key:generate
+-   Run -> php artisan key:generate
 
-- Run -> php artisan jwt:secret
+-   Run -> php artisan jwt:secret
 
-- Run -> php artisan migrate
+-   Run -> php artisan migrate
 
-- Run -> php artisan db:seed
+-   Run -> php artisan db:seed
 
-- Run -> php artisan serve
+-   Run -> php artisan serve
 
-You can delete the logs files by executing the command 
+*   Go to the .env and set
+    -   MAIL_MAILER=smtp
+    -   MAIL_HOST=mailpit
+    -   MAIL_PORT=1025
+    -   MAIL_USERNAME=null
+    -   MAIL_PASSWORD=null
+    -   MAIL_ENCRYPTION=null
+    -   MAIL_FROM_ADDRESS="hello@example.com"
+    -   MAIL_FROM_NAME="${APP_NAME}"
 
-- Run ->  php artisan lf:wipe
+You can delete the logs files by executing the command
+
+-   Run -> php artisan lf:wipe
