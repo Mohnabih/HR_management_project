@@ -14,4 +14,10 @@ Go to the folder application using cd command on your cmd or terminal
 
 - Run -> php artisan migrate
 
+- Run -> php artisan db:seed
+
 - Run -> php artisan serve
+
+You can delete the logs files by executing the command 
+
+- Run ->  php artisan lf:wipe

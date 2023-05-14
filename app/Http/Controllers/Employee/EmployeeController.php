@@ -7,11 +7,16 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Api\Employee\UpdateEmployeeRequest;
+use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends AppBaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -65,12 +70,10 @@ class EmployeeController extends AppBaseController
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
+        $employee = Employee::without(['manager', 'founder'])->find($id);
         if ($employee)
             return $this->sendResponse(
-                [
-                    "employee" => $employee
-                ],
+                $employee,
                 "employee info",
                 ApiCode::SUCCESS,
                 0

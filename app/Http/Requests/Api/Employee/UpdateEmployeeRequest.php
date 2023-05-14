@@ -25,9 +25,7 @@ class UpdateEmployeeRequest extends BaseRequest
     public function rules()
     {
         return [
-            'category'=>'integer|in:0,1',
             'manager_id'=>'integer|exists:employees,id',
-            'founder_id'=>'integer|exists:founders,id',
             'name'=>'string|max:150',
             'age'=>'numeric|min:18',
             'gender'=>'integer|in:0,1',
